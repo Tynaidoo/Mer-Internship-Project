@@ -9,11 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/fixes.css">
 </head>
 <body>
 <header class="site-header">
   <a class="logo-link" href="#top" aria-label="merSETA internship home">
-    <img class="merseta-logo" src="assets/merseta-logo.svg" alt="merSETA Manufacturing, Engineering and Related Services SETA logo">
+    <svg class="merseta-logo-svg" viewBox="0 0 350 92" role="img" aria-label="merSETA Manufacturing, Engineering and Related Services SETA logo">
+      <g transform="translate(8 8)">
+        <circle cx="38" cy="38" r="30" fill="none" stroke="#111" stroke-width="3"/>
+        <circle cx="38" cy="38" r="23" fill="none" stroke="#c99a3b" stroke-width="5"/>
+        <path d="M38 3v70M3 38h70M13 13l50 50M63 13L13 63" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="38,18 55,29 49,49 28,56 19,38 27,23" fill="#c99a3b"/>
+        <polygon points="38,18 55,29 38,38" fill="#e1bd67"/>
+        <polygon points="38,38 49,49 28,56" fill="#9f7427"/>
+      </g>
+      <text x="86" y="43" font-family="Inter,Arial,sans-serif" font-size="36" font-weight="800" fill="#111">mer</text>
+      <text x="151" y="43" font-family="Inter,Arial,sans-serif" font-size="36" font-weight="700" fill="#c99a3b">SETA</text>
+      <text x="88" y="61" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="600" letter-spacing="1" fill="#111">MANUFACTURING, ENGINEERING</text>
+      <text x="88" y="74" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="600" letter-spacing="1" fill="#111">AND RELATED SERVICES SETA</text>
+    </svg>
   </a>
   <nav aria-label="Primary navigation">
     <a href="#journey">Course Journey</a>
@@ -58,8 +72,6 @@
         <g class="part right-wheel"><circle cx="520" cy="341" r="51" fill="#111"/><circle cx="520" cy="341" r="27" fill="#d2aa50"/><circle cx="520" cy="341" r="9" fill="#111"/></g>
         <g class="part front-details"><rect x="573" y="281" width="37" height="19" rx="8" fill="#f5cf71"/><path d="M590 320h28" stroke="#111" stroke-width="7" stroke-linecap="round"/></g>
         <g class="part rear-details"><rect x="139" y="281" width="28" height="20" rx="6" fill="#a97925"/><path d="M130 321h31" stroke="#111" stroke-width="7" stroke-linecap="round"/></g>
-        <g class="spark spark-one"><circle cx="250" cy="105" r="6"/><path d="M250 88v-13M250 135v-13M233 105h-13M280 105h-13"/></g>
-        <g class="spark spark-two"><circle cx="566" cy="163" r="5"/><path d="M566 149v-11M566 187v-11M552 163h-11M591 163h-11"/></g>
       </svg>
       <p class="visual-caption">Different skills. One professional journey.</p>
     </div>
@@ -73,10 +85,12 @@
     </div>
     <div class="roadmap">
       <article><span>01</span><h3>Welcome</h3><p>Understand your internship, expectations, responsibilities and workplace culture.</p></article>
-      <article><span>02</span><h3>Prepare</h3><p>Develop professionalism, collaboration, adaptability and career ownership.</p></article>
-      <article><span>03</span><h3>Navigate Digital</h3><p>Build AI, information, cybersecurity and data-literacy practices.</p></article>
-      <article><span>04</span><h3>Manage Yourself</h3><p>Strengthen learning confidence, time and project-management capability.</p></article>
-      <article><span>05</span><h3>Communicate</h3><p>Work effectively across remote, virtual and digital workplace environments.</p></article>
+      <article><span>02</span><h3>Preparing for Success</h3><p>Develop professionalism, collaboration, adaptability, resilience and career ownership.</p></article>
+      <article><span>03</span><h3>Digital Environment &amp; AI</h3><p>Build digital, AI, information, cybersecurity and data-literacy practices.</p></article>
+      <article><span>04</span><h3>Learning &amp; Time Management</h3><p>Strengthen learning confidence, time management and project-management capability.</p></article>
+      <article><span>05</span><h3>Communication</h3><p>Work effectively across remote, virtual and digital workplace environments.</p></article>
+      <article><span>06</span><h3>Career Exploration</h3><p>Build your ePortfolio, document learning evidence and develop your professional profile.</p></article>
+      <article><span>07</span><h3>Presentation Skills</h3><p>Design effective presentations and build confidence in presentation delivery.</p></article>
     </div>
   </section>
 
@@ -94,7 +108,6 @@
       <article class="module-card"><div class="module-number">05</div><h3>Communication</h3><p>Communicate and collaborate effectively in remote, virtual and digitally enabled workplace environments.</p><a href="#">Explore module →</a></article>
       <article class="module-card"><div class="module-number">06</div><h3>Career Exploration</h3><p>Develop your internship ePortfolio, document evidence of your learning and build your professional LinkedIn presence.</p><a href="#">Explore module →</a></article>
       <article class="module-card"><div class="module-number">07</div><h3>Presentation Skills</h3><p>Learn the principles of effective presentations and develop strategies for managing presentation anxiety and delivery.</p><a href="#">Explore module →</a></article>
-      <article class="module-card quote-card"><span>INTERNSHIP MINDSET</span><blockquote>“Learn. Contribute. Explore.”</blockquote><p>Build the habits and skills that turn an internship into a meaningful professional experience.</p></article>
     </div>
   </section>
 
@@ -110,7 +123,6 @@
   <div><strong>MER Internship Project</strong><small>Roadmap to an Effective Internship Experience</small></div>
   <p>Skills today. A stronger tomorrow.</p>
 </footer>
-
 <script src="assets/script.js"></script>
 </body>
 </html>
