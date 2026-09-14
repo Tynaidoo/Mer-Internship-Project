@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Module 1 | Session 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c99a3b;--gold-light:#e3c36e;--gold-dark:#8a6425;--ink:#1b1b1b;--muted:#666;--paper:#f7f5ef;--line:#e7e0d4}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,sans-serif;color:var(--ink);line-height:1.65}a{color:inherit;text-decoration:none}
+.site-header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(22px,5vw,78px);background:#fffffff7;border-bottom:1px solid #eee}.brand-space{min-width:160px;height:44px}.site-header nav{display:flex;gap:24px;align-items:center;font-size:.9rem;font-weight:700}.back{border:1px solid #d9cfbc;padding:10px 16px;border-radius:999px}
+.hero{padding:74px clamp(24px,8vw,120px);background:linear-gradient(120deg,#101010,#2a2318);color:#fff}.kicker{font-size:.72rem;letter-spacing:.18em;color:var(--gold-light);font-weight:800;text-transform:uppercase}.hero h1,h2,h3{font-family:"Space Grotesk",sans-serif}.hero h1{font-size:clamp(2.8rem,5.5vw,5rem);line-height:1;letter-spacing:-.05em;max-width:1100px;margin:16px 0}.hero p{max-width:820px;color:#ded7ca}.session-tag{display:inline-block;margin-top:18px;background:var(--gold);color:#111;font-weight:800;padding:9px 14px;border-radius:999px;font-size:.78rem}
+.page{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:56px;max-width:1280px;margin:auto;padding:70px 28px 100px}.side{position:sticky;top:96px;align-self:start;border-left:1px solid var(--line);padding-left:22px}.side strong{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px}.side a{display:block;padding:7px 0;color:#666;font-size:.87rem}
+.lesson{padding:34px 0;border-bottom:1px solid var(--line)}.lesson:first-child{padding-top:0}h2{font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.08;margin:0 0 16px}h3{font-size:1.35rem;margin:26px 0 10px}p,li{color:#4f4f4f}li{margin:8px 0}.purpose{background:var(--paper);border-left:4px solid var(--gold);padding:24px 26px;border-radius:0 18px 18px 0}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.pill{background:#f2ede3;border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-size:.78rem;font-weight:800;color:#5a4c34}
+.spark{background:#111;color:#fff;border-radius:22px;padding:28px;margin-top:18px}.spark span{color:var(--gold-light);font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.spark p{color:#fff;font-family:"Space Grotesk";font-size:1.3rem;margin-bottom:0}
+.culture-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.culture-card{background:#111;color:#fff;padding:22px;border-radius:18px;min-height:150px}.culture-card span{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--gold);color:#111;font-weight:800;margin-bottom:16px}.culture-card h4{margin:0 0 6px}.culture-card p{margin:0;color:#d9d0c2;font-size:.86rem}
+.video{display:block;border:1px solid var(--line);border-radius:16px;padding:18px;background:#fffaf0;margin:20px 0;color:var(--gold-dark);font-weight:800}.video:hover{background:#fff4da}
+.activity{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px;margin-top:22px}.activity-title{display:flex;align-items:center;gap:12px}.badge{background:var(--gold);padding:7px 10px;border-radius:999px;font-size:.72rem;font-weight:800}.activity h3{margin:0}.activity textarea,.activity input{width:100%;padding:12px;border:1px solid #d9cfbd;border-radius:10px;font:inherit;background:#fff;margin-top:8px}.value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}.value-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.value-card strong{display:block;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.92rem}th,td{border:1px solid var(--line);padding:13px 14px;text-align:left;vertical-align:top}th{background:#f5f0e4}
+.quote{border:1px solid var(--line);background:#fffaf0;border-radius:16px;padding:20px 22px;margin:22px 0;font-weight:700;color:#3a2b13}
+.smart-box{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:20px 0}.smart{background:#111;color:#fff;border-radius:16px;padding:18px;text-align:center}.smart b{display:block;color:var(--gold-light);font-size:1.7rem}.smart span{font-size:.78rem}
+.checks{display:grid;gap:8px;margin-top:14px}.checks label{display:flex;gap:10px;align-items:center}.checks input{width:auto;margin:0}
+.checklist{list-style:none;padding:0}.checklist li{position:relative;padding:12px 14px 12px 44px;border-bottom:1px solid var(--line);margin:0}.checklist li:before{content:"✓";position:absolute;left:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#111;font-weight:900}
+.resource{border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.resource a{color:var(--gold-dark);font-weight:700;text-decoration:underline}.next{display:flex;justify-content:space-between;align-items:center;gap:20px;background:#111;color:#fff;border-radius:22px;padding:24px 28px;margin-top:36px}.next p{color:#d4ccbe;margin:4px 0}.next a{background:var(--gold);color:#111;font-weight:800;padding:12px 16px;border-radius:999px}
+footer{padding:28px clamp(24px,8vw,120px);background:var(--paper);border-top:1px solid var(--line);color:#666;font-size:.82rem}
+@media(max-width:900px){.page{grid-template-columns:1fr}.side{display:none}.culture-grid{grid-template-columns:1fr 1fr}.smart-box{grid-template-columns:1fr 1fr}.site-header nav a:not(.back){display:none}}@media(max-width:600px){.hero{padding:55px 22px}.page{padding:48px 20px}.culture-grid,.value-grid,.smart-box{grid-template-columns:1fr}.next{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="brand-space"></div><nav><a href="index.html">Course Journey</a><a href="index.html">Course Menu</a><a href="../index.html#about">About</a><a class="back" href="index.html#module-1">← Module 1 sessions</a></nav></header>
+
+<header class="hero"><span class="kicker">Module 1 • Session 4</span><h1>Company Culture - Values &amp; SMART Goals</h1><p>Understand how organisational culture and workplace values shape behaviour, and learn how to translate expectations into SMART goals for your internship.</p><span class="session-tag">Culture • Values • Behaviour • SMART Goals</span></header>
+
+<main class="page"><article>
+<section class="lesson" id="purpose"><h2>Purpose of the Session</h2><div class="purpose">Organisational culture is reflected not only in formal policies and stated values, but also in the everyday behaviours, expectations and practices that shape how people work together. The purpose of this session is to help you understand company culture and workplace values and how these influence the way people communicate, collaborate, make decisions and perform their responsibilities. You will also learn how to translate expectations into SMART goals that provide clear direction for your learning and performance during the internship.</div>
+<div class="meta"><span class="pill">Time allocation: 1 hour</span><span class="pill">Activity 1.4.1: Values in Action</span><span class="pill">Activity 1.4.2: SMART Goal Scenario Challenge</span></div></section>
+
+<section class="lesson" id="outcomes"><h2>Learning Outcomes</h2><p>By the end of the session, you will be able to:</p><ul><li>Define company/organisational culture and explain why it matters in the workplace.</li><li>Describe how workplace values influence workplace behaviour.</li><li>Recognise how an intern's behaviour can either support or undermine organisational values.</li><li>Explain the five components of a SMART goal.</li></ul>
+<div class="spark"><span>SPARK – What Would You Do?</span><p>You are an intern and your supervisor asks you to complete a task by 15:00. At 14:30, you realise that you are not going to finish it on time. You could remain quiet and hope to finish it later, or you could inform your supervisor that you are experiencing a delay. What would you do?</p></div></section>
+
+<section class="lesson" id="culture"><h2>What is Company Culture?</h2><p>Company culture, also referred to as <strong>organisational culture</strong>, is the collection of shared assumptions, expectations, norms and ways of working that influence how people behave within an organisation.</p><p>Culture can be seen in:</p>
+<div class="culture-grid">
+<div class="culture-card"><span>1</span><h4>Communication</h4><p>How people communicate with one another and how managers interact with employees.</p></div>
+<div class="culture-card"><span>2</span><h4>Decisions</h4><p>How decisions are made and how employees respond to mistakes.</p></div>
+<div class="culture-card"><span>3</span><h4>Collaboration</h4><p>How teams work together and how customers and stakeholders are treated.</p></div>
+<div class="culture-card"><span>4</span><h4>Expectations</h4><p>How employees approach deadlines, responsibilities, rewards and discouraged behaviour.</p></div>
+</div>
+<p>Organisational culture develops through shared learning and becomes visible through the values, assumptions and practices that guide behaviour within an organisation.</p>
+<h3>Why Does Company Culture Matter to Interns?</h3>
+<a class="video" href="https://careers.uw.edu/videos/the-importance-of-company-culture/" target="_blank" rel="noopener">Watch: The Importance of Company Culture ↗</a>
+</section>
+
+<section class="lesson" id="values"><h2>Activity 1.4.1 – Values in Action</h2>
+<div class="activity"><div class="activity-title"><span class="badge">Activity</span><h3>Values in Action</h3></div><p><strong>Instruction:</strong> Answer the questions below based on the suggested values.</p>
+<p><strong>Suggested values:</strong> Integrity, Respect, Accountability, Teamwork, Professionalism, Innovation, Service, Excellence, Inclusivity, Responsibility.</p>
+<div class="value-grid">
+<div class="value-card"><strong>1. What does this value mean?</strong><textarea rows="3"></textarea></div>
+<div class="value-card"><strong>2. What would this value look like in the behaviour of an intern?</strong><textarea rows="3"></textarea></div>
+<div class="value-card"><strong>3. What behaviour would contradict this value?</strong><textarea rows="3"></textarea></div>
+<div class="value-card"><strong>4. Create one short workplace example demonstrating the value.</strong><textarea rows="3"></textarea></div>
+</div></div></section>
+
+<section class="lesson" id="smart"><h2>Understanding SMART Goals</h2><h3>What Is a Goal?</h3><p>A goal is something a person intends to achieve. In the workplace, goals can help employees focus their effort, monitor progress and understand what successful performance looks like.</p><p>Goal-setting research has found that specific and appropriately challenging goals, together with feedback and commitment, can improve performance and motivation. Goals can be used to structure both work performance and learning.</p>
+<h3>The SMART Goal Framework</h3>
+<table><thead><tr><th>Letter</th><th>Meaning</th><th>Question to Ask</th></tr></thead><tbody>
+<tr><td><strong>S</strong></td><td><strong>Specific</strong></td><td>What exactly do I want to achieve?</td></tr>
+<tr><td><strong>M</strong></td><td><strong>Measurable</strong></td><td>How will I know I have achieved it?</td></tr>
+<tr><td><strong>A</strong></td><td><strong>Achievable</strong></td><td>Is it realistic given my role, resources and timeframe?</td></tr>
+<tr><td><strong>R</strong></td><td><strong>Relevant</strong></td><td>Why does this goal matter to my internship or development?</td></tr>
+<tr><td><strong>T</strong></td><td><strong>Time-bound</strong></td><td>When will I achieve it?</td></tr>
+</tbody></table>
+<div class="smart-box"><div class="smart"><b>S</b><span>Specific</span></div><div class="smart"><b>M</b><span>Measurable</span></div><div class="smart"><b>A</b><span>Achievable</span></div><div class="smart"><b>R</b><span>Relevant</span></div><div class="smart"><b>T</b><span>Time-bound</span></div></div>
+<h3>Example of a Weak Goal</h3><div class="quote">“I want to improve my Microsoft Office skills.”</div><p>The goal is useful, but it is too broad.</p>
+<h3>SMART Version</h3><div class="quote">“By the end of my first month, I will improve my Excel skills by completing two workplace-related Excel tasks independently and demonstrating the ability to use at least five relevant Excel functions.”</div>
+<ul><li><strong>Specific:</strong> Excel skills and functions are identified.</li><li><strong>Measurable:</strong> Two tasks and five functions provide measures.</li><li><strong>Achievable:</strong> It is appropriate for an intern's development.</li><li><strong>Relevant:</strong> Excel may support administrative and workplace responsibilities.</li><li><strong>Time-bound:</strong> It must be achieved within the first month.</li></ul>
+<h3>Important Point</h3><div class="quote">SMART goals should not become a box-ticking exercise. A useful goal should give an intern a <strong>clear direction for action and a way to assess progress</strong>.</div>
+</section>
+
+<section class="lesson" id="challenge"><h2>Activity 1.4.2 – SMART Goal Scenario Challenge</h2><div class="activity"><div class="activity-title"><span class="badge">Activity</span><h3>SMART Goal Scenario Challenge</h3></div>
+<p><strong>Scenario:</strong> Thabo is an intern in the Finance department. During his first few weeks, he notices that he struggles to organise his tasks. He sometimes forgets deadlines and has to ask his supervisor several times what he should prioritise. His supervisor tells him that he needs to become more organised and take greater ownership of his workload.</p>
+<div class="quote">Thabo writes the following goal: “I want to become better at time management.”</div>
+<p><strong>1. Identify the problem with Thabo's goal.</strong><textarea rows="3"></textarea></p>
+<p><strong>2. Rewrite the goal as a SMART goal.</strong><textarea rows="3"></textarea></p>
+<p><strong>3. Identify each SMART component in the new goal.</strong><textarea rows="4"></textarea></p>
+<p><strong>4. Identify one company value that the goal supports.</strong><input></p>
+</div></section>
+
+<section class="lesson" id="application"><h2>Application – My Internship SMART Goal</h2><div class="activity"><p>Create <strong>one SMART goal</strong> for your internship. You can choose an area such as professional communication, Microsoft Office skills, time management, research, teamwork, administration, presentation skills, customer/stakeholder service, project management, technical skills, confidence or industry knowledge.</p>
+<h3>Goal Template</h3><div class="quote">By __________, I will __________ by __________ so that __________.</div>
+<textarea rows="4" placeholder="Write your SMART goal here..."></textarea>
+<div class="checks"><label><input type="checkbox"> Is it <strong>Specific</strong>?</label><label><input type="checkbox"> Is it <strong>Measurable</strong>?</label><label><input type="checkbox"> Is it <strong>Achievable</strong>?</label><label><input type="checkbox"> Is it <strong>Relevant</strong>?</label><label><input type="checkbox"> Is it <strong>Time-bound</strong>?</label></div>
+</div></section>
+
+<section class="lesson" id="checklist"><h2>Checklist</h2><ul class="checklist"><li>I can define company/organisational culture and explain why it matters in the workplace.</li><li>I am able to describe how workplace values influence workplace behaviour.</li><li>I recognise how an intern's behaviour can either support or undermine organisational values.</li><li>I can explain the five components of a SMART goal.</li></ul></section>
+
+<section class="lesson" id="reflection"><h2>Reflection</h2><div class="spark"><span>Reflect</span><p>What is one workplace value you want to demonstrate during your internship, and what SMART goal can you set to help you put that value into practice?</p></div></section>
+
+<section class="lesson" id="readings"><h2>Recommended Readings</h2>
+<div class="resource">Schein, E. H., &amp; Schein, P. A. (2017). <em>Organizational culture and leadership</em> (5th ed.). Wiley. <a href="https://www.wiley-vch.de/en/areas-interest/finance-economics-law/business-management-13ba/management-13ba1/management-leadership-13ba14/organizational-culture-and-leadership-978-1-119-21204-1?utm_source=chatgpt.com" target="_blank" rel="noopener">Open reading ↗</a></div>
+<div class="resource">Locke, E. A., &amp; Latham, G. P. (2002). Building a practically useful theory of goal setting and task motivation: A 35-year odyssey. <em>American Psychologist, 57</em>(9), 705–717. <a href="https://doi.org/10.1037/0003-066X.57.9.705" target="_blank" rel="noopener">Open DOI ↗</a></div>
+
+<h3>Additional Readings</h3>
+<div class="resource">Groysberg, B., Lee, J., Price, J., &amp; Cheng, J. Y.-J. (2018). The leader's guide to corporate culture. <em>Harvard Business Review, 96</em>(1), 44–52.</div>
+<div class="resource">Latham, G. P., &amp; Locke, E. A. (2006). New directions in goal-setting theory. <em>Current Directions in Psychological Science, 15</em>(5), 265–268. <a href="https://doi.org/10.1111/j.1467-8721.2006.00449.x" target="_blank" rel="noopener">Open DOI ↗</a></div>
+<div class="resource">Latham, G. P. (2012). Motivate employee performance through goal setting. In E. A. Locke (Ed.), <em>Handbook of principles of organizational behavior: Indispensable knowledge for evidence-based management</em> (2nd ed.). Wiley. <a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119206422.ch9?utm_source=chatgpt.com" target="_blank" rel="noopener">Open reading ↗</a></div>
+
+<h3>References</h3>
+<div class="resource">Groysberg, B., Lee, J., Price, J., &amp; Cheng, J. Y.-J. (2018). The leader's guide to corporate culture. <em>Harvard Business Review, 96</em>(1), 44–52.</div>
+<div class="resource">Latham, G. P. (2012). Motivate employee performance through goal setting. In E. A. Locke (Ed.), <em>Handbook of principles of organizational behavior: Indispensable knowledge for evidence-based management</em> (2nd ed.). Wiley. <a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119206422.ch9?utm_source=chatgpt.com" target="_blank" rel="noopener">Open reference ↗</a></div>
+<div class="resource">Latham, G. P., &amp; Locke, E. A. (2006). New directions in goal-setting theory. <em>Current Directions in Psychological Science, 15</em>(5), 265–268. <a href="https://doi.org/10.1111/j.1467-8721.2006.00449.x" target="_blank" rel="noopener">Open DOI ↗</a></div>
+<div class="resource">Locke, E. A., &amp; Latham, G. P. (2002). Building a practically useful theory of goal setting and task motivation: A 35-year odyssey. <em>American Psychologist, 57</em>(9), 705–717. <a href="https://doi.org/10.1037/0003-066X.57.9.705" target="_blank" rel="noopener">Open DOI ↗</a></div>
+<div class="resource">Schein, E. H., &amp; Schein, P. A. (2017). <em>Organizational culture and leadership</em> (5th ed.). Wiley. <a href="https://www.wiley-vch.de/en/areas-interest/finance-economics-law/business-management-13ba/management-13ba1/management-leadership-13ba14/organizational-culture-and-leadership-978-1-119-21204-1?utm_source=chatgpt.com" target="_blank" rel="noopener">Open reference ↗</a></div>
+</section>
+
+<div class="next"><div><strong>Session 4 complete</strong><p>Return to the Module 1 session list whenever you want to revisit a session.</p></div><a href="index.html#module-1">View Module 1 sessions →</a></div>
+</article>
+
+<aside class="side"><strong>In this session</strong><a href="#purpose">Purpose</a><a href="#outcomes">Learning Outcomes</a><a href="#culture">Company Culture</a><a href="#values">Values in Action</a><a href="#smart">SMART Goals</a><a href="#challenge">Scenario Challenge</a><a href="#application">My SMART Goal</a><a href="#checklist">Checklist</a><a href="#reflection">Reflection</a><a href="#readings">Readings</a></aside>
+</main>
+<footer>MER Internship Project • Module 1 • Session 4</footer>
+</body></html>
