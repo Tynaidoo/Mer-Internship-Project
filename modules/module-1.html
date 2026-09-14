@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Session 1: Welcome to Your Internship Journey">
+  <title>Module 1 | Welcome to Your Internship Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--gold:#c99a3b;--gold-light:#e3c36e;--gold-dark:#8a6425;--black:#111;--ink:#1b1b1b;--muted:#6b6b6b;--paper:#f7f5ef;--line:#e7e0d4;--white:#fff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.65}a{color:inherit;text-decoration:none}
+    .site-header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(22px,5vw,78px);background:rgba(255,255,255,.97);border-bottom:1px solid #eee;backdrop-filter:blur(12px)}
+    .brand-space{min-width:160px;height:44px}.site-header nav{display:flex;align-items:center;gap:26px;font-size:.9rem;font-weight:700}.site-header nav a:hover{color:var(--gold-dark)}.back{border:1px solid #d9cfbc;padding:10px 16px;border-radius:999px}
+    .hero{background:linear-gradient(120deg,#101010,#2a2318);color:#fff;padding:74px clamp(24px,8vw,120px);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-100px;top:-120px;width:420px;height:420px;border:1px solid rgba(201,154,59,.24);border-radius:50%;box-shadow:0 0 0 60px rgba(201,154,59,.04),0 0 0 120px rgba(201,154,59,.025)}.kicker{font-size:.72rem;letter-spacing:.18em;color:var(--gold-light);font-weight:800;text-transform:uppercase}.hero h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(2.8rem,6vw,5.4rem);line-height:.98;letter-spacing:-.05em;max-width:980px;margin:16px 0 18px}.hero p{max-width:780px;color:#ded7ca;font-size:1.04rem}.session-tag{display:inline-block;margin-top:20px;background:var(--gold);color:#111;font-weight:800;padding:10px 14px;border-radius:999px;font-size:.78rem}
+    .page{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:56px;max-width:1280px;margin:0 auto;padding:70px 28px 100px}.content{min-width:0}.side{position:sticky;top:96px;align-self:start;border-left:1px solid var(--line);padding-left:22px}.side strong{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px}.side a{display:block;padding:8px 0;color:#666;font-size:.88rem}.side a:hover{color:#111}
+    section.lesson{padding:34px 0;border-bottom:1px solid var(--line)}section.lesson:first-child{padding-top:0}h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.08;margin:0 0 16px;letter-spacing:-.03em}h3{font-family:"Space Grotesk",sans-serif;font-size:1.35rem;margin:26px 0 10px}p{color:#4e4e4e}ul,ol{padding-left:22px}.content li{margin:8px 0;color:#4f4f4f}
+    .purpose{background:var(--paper);border-left:4px solid var(--gold);padding:24px 26px;border-radius:0 18px 18px 0}.spark{background:#111;color:#fff;border-radius:22px;padding:28px;margin-top:18px}.spark .label{color:var(--gold-light);font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.spark p{color:#fff;font-family:"Space Grotesk",sans-serif;font-size:1.35rem;margin-bottom:0}
+    .welcome{font-size:1.02rem}.welcome strong:first-child{color:#111}.quote{border:1px solid var(--line);background:#fffaf0;border-radius:16px;padding:20px 22px;margin:24px 0;font-weight:700;color:#3a2b13;text-align:center}
+    .infographic{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.info-card{background:#111;color:#fff;padding:22px;border-radius:18px;min-height:150px}.info-card span{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--gold);color:#111;font-weight:800;margin-bottom:18px}.info-card h4{margin:0 0 6px;font-size:1rem}.info-card p{margin:0;color:#d9d0c2;font-size:.86rem}
+    .activity{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px;margin-top:22px}.activity-title{display:flex;gap:12px;align-items:center;margin-bottom:10px}.activity-badge{background:var(--gold);color:#111;font-weight:800;border-radius:999px;padding:7px 10px;font-size:.72rem}.activity h3{margin:0}.prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.prompt{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.prompt strong{display:block;color:var(--gold-dark);margin-bottom:8px}
+    table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.92rem}th,td{border:1px solid var(--line);padding:13px 14px;text-align:left;vertical-align:top}th{background:#f5f0e4;color:#2d2518}
+    .quiz{display:grid;gap:12px;margin-top:16px}.quiz-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.quiz-item p{margin:0 0 10px;color:#222;font-weight:600}.quiz-options{display:flex;gap:10px;flex-wrap:wrap}.quiz-options label{border:1px solid #d8cfbd;border-radius:999px;padding:7px 11px;font-size:.82rem;cursor:pointer}.quiz-options input{margin-right:6px}
+    .checklist{list-style:none;padding:0}.checklist li{position:relative;padding:12px 14px 12px 44px;border-bottom:1px solid var(--line);margin:0}.checklist li:before{content:"✓";position:absolute;left:12px;top:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#111;font-weight:900;font-size:.8rem}
+    .resource-list{display:grid;gap:14px}.resource{border:1px solid var(--line);border-radius:16px;padding:18px}.resource a{color:var(--gold-dark);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+    .next{display:flex;justify-content:space-between;align-items:center;gap:20px;background:#111;color:#fff;border-radius:22px;padding:24px 28px;margin-top:36px}.next p{color:#d4ccbe;margin:4px 0 0}.next a{background:var(--gold);color:#111;font-weight:800;padding:12px 16px;border-radius:999px}
+    footer{padding:28px clamp(24px,8vw,120px);background:#f7f5ef;border-top:1px solid var(--line);color:#666;font-size:.82rem}
+    @media(max-width:900px){.page{grid-template-columns:1fr}.side{display:none}.infographic,.prompt-grid{grid-template-columns:1fr 1fr}.site-header nav a:not(.back){display:none}}
+    @media(max-width:600px){.infographic,.prompt-grid{grid-template-columns:1fr}.hero{padding:56px 22px}.page{padding:48px 20px 70px}.next{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand-space" aria-hidden="true"></div>
+  <nav aria-label="Module navigation">
+    <a href="../index.html#modules">Course Journey</a>
+    <a href="../index.html#modules">Modules</a>
+    <a href="../index.html#about">About</a>
+    <a class="back" href="../index.html#modules">← Back to roadmap</a>
+  </nav>
+</header>
+
+<header class="hero">
+  <span class="kicker">Module 1 • Session 1</span>
+  <h1>Welcome to Your Internship Journey</h1>
+  <p>Understand what an internship is, what to expect, what your responsibilities are, and how to make the most of the experience from your first day.</p>
+  <span class="session-tag">Welcome • Expectations • Responsibilities • Contribution</span>
+</header>
+
+<main class="page">
+  <article class="content">
+    <section class="lesson" id="purpose">
+      <h2>Purpose</h2>
+      <div class="purpose">To welcome interns into the workplace and help them understand what an internship is, why they are undertaking one, what they can expect, and what they can do to make the most of the experience.</div>
+    </section>
+
+    <section class="lesson" id="outcomes">
+      <h2>Learning Outcomes</h2>
+      <p>By the end of this session, interns will be able to:</p>
+      <ul>
+        <li><strong>Define</strong> an internship in their own words.</li>
+        <li><strong>Identify</strong> realistic expectations for an internship.</li>
+        <li><strong>Describe</strong> their basic responsibilities as an intern.</li>
+        <li><strong>Identify</strong> behaviours and attitudes that can help them make the most of their internship.</li>
+        <li><strong>Recognise</strong> that being an intern means being both a learner and a contributor.</li>
+      </ul>
+      <div class="spark">
+        <span class="label">Spark</span>
+        <p>Imagine that your internship is ending tomorrow. What would need to have happened for you to say, “That was a valuable experience”?</p>
+      </div>
+    </section>
+
+    <section class="lesson" id="welcome">
+      <h2>Welcome Message</h2>
+      <div class="welcome">
+        <p><strong>Well done on reaching this exciting milestone in your professional journey.</strong></p>
+        <p>Securing an internship is an important achievement. It reflects the dedication, hard work, and commitment you have demonstrated throughout your studies and your preparation for the world of work.</p>
+        <p>For many of you, an internship will be your first opportunity to experience a professional working environment. This can be both exciting and challenging. You may be entering a new organisation, meeting new people, working with colleagues from different backgrounds, and taking on responsibilities that are unfamiliar to you.</p>
+        <p>You will also need to adjust to the expectations of the workplace. The way you communicate, collaborate, solve problems, manage your time, and approach your responsibilities may be different from what you have experienced in an academic environment. An internship is an opportunity to put your knowledge into practice, learn from experienced professionals, develop new skills and discover more about yourself and your career interests.</p>
+        <p>The good news is that <strong>you are not expected to know everything from day one</strong>. An internship is a learning experience. You will make mistakes, ask questions, receive feedback, build relationships, and gradually become more confident in your abilities.</p>
+        <p>This course is designed to help you make the most of your internship. It will guide you through the professional skills, behaviours and practical knowledge you need to navigate the workplace successfully and turn your internship into a meaningful step towards your future career.</p>
+        <p><strong>We are excited to have you with us!</strong></p>
+      </div>
+    </section>
+
+    <section class="lesson" id="what-is">
+      <h2>What is an internship?</h2>
+      <p>An internship is a structured opportunity to gain practical workplace experience while developing knowledge and skills.</p>
+      <p>Unlike a university assignment, an internship gives you the opportunity to apply what you have learned in a real-world environment.</p>
+      <p>The visual below explores what an internship can help you do:</p>
+      <div class="infographic" aria-label="Internship benefits infographic">
+        <div class="info-card"><span>1</span><h4>Apply</h4><p>Use your academic knowledge in real workplace situations.</p></div>
+        <div class="info-card"><span>2</span><h4>Learn</h4><p>Build new knowledge, skills and confidence through experience.</p></div>
+        <div class="info-card"><span>3</span><h4>Experience</h4><p>See how teams, systems, projects and professional environments work.</p></div>
+        <div class="info-card"><span>4</span><h4>Contribute</h4><p>Add value through your ideas, effort, research and problem-solving.</p></div>
+      </div>
+      <div class="quote">As an intern, not only do you learn from the organisation, but you also contribute to it.</div>
+
+      <div class="activity">
+        <div class="activity-title"><span class="activity-badge">Activity</span><h3>My Internship Expectations</h3></div>
+        <p>Record 2–3 answers under each heading.</p>
+        <div class="prompt-grid">
+          <div class="prompt"><strong>1. What do I want to LEARN?</strong><p>Examples: technical skills, communication, industry knowledge, project management.</p></div>
+          <div class="prompt"><strong>2. What do I want to EXPERIENCE?</strong><p>Examples: attending meetings, working on a project, presenting, collaborating with a team.</p></div>
+          <div class="prompt"><strong>3. What do I want to CONTRIBUTE?</strong><p>Examples: ideas, research, energy, problem-solving, technical knowledge.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="expect">
+      <h2>What should you expect from your internship?</h2>
+      <p>Every internship is different, but most interns can expect some combination of:</p>
+      <ul>
+        <li>Meeting new people.</li>
+        <li>Having a supervisor or manager.</li>
+        <li>Receiving tasks and deadlines.</li>
+        <li>Attending meetings.</li>
+        <li>Learning new systems or tools.</li>
+        <li>Making mistakes and receiving feedback.</li>
+        <li>Working independently at times.</li>
+        <li>Working as part of a team.</li>
+        <li>Encountering things you have never done before.</li>
+        <li>Having questions — lots of them!</li>
+      </ul>
+      <div class="quote">You are not expected to know everything. You are expected to be willing to learn.</div>
+
+      <div class="activity">
+        <div class="activity-title"><span class="activity-badge">Activity</span><h3>Expectation or misconception?</h3></div>
+        <p>Select whether each statement is a <strong>Realistic Expectation</strong> or a <strong>Misconception</strong>.</p>
+        <div class="quiz">
+          <div class="quiz-item"><p>1. “I should know exactly what to do from my first day.”</p><div class="quiz-options"><label><input type="radio" name="q1"> Realistic Expectation</label><label><input type="radio" name="q1"> Misconception</label></div></div><div class="quiz-item"><p>2. “I may need to ask questions.”</p><div class="quiz-options"><label><input type="radio" name="q2"> Realistic Expectation</label><label><input type="radio" name="q2"> Misconception</label></div></div><div class="quiz-item"><p>3. “My internship should involve meaningful learning.”</p><div class="quiz-options"><label><input type="radio" name="q3"> Realistic Expectation</label><label><input type="radio" name="q3"> Misconception</label></div></div><div class="quiz-item"><p>4. “I will probably make some mistakes.”</p><div class="quiz-options"><label><input type="radio" name="q4"> Realistic Expectation</label><label><input type="radio" name="q4"> Misconception</label></div></div><div class="quiz-item"><p>5. “Because I'm an intern, my work doesn't really matter.”</p><div class="quiz-options"><label><input type="radio" name="q5"> Realistic Expectation</label><label><input type="radio" name="q5"> Misconception</label></div></div><div class="quiz-item"><p>6. “I should wait until someone tells me everything I need to do.”</p><div class="quiz-options"><label><input type="radio" name="q6"> Realistic Expectation</label><label><input type="radio" name="q6"> Misconception</label></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="role">
+      <h2>Your role as an intern</h2>
+      <p>The role of the intern can be conceptualised as:</p>
+      <h3>Learner + Contributor + Professional</h3>
+      <table>
+        <thead><tr><th>As a learner</th><th>As a contributor</th><th>As a professional</th></tr></thead>
+        <tbody>
+          <tr><td>Ask questions</td><td>Complete tasks</td><td>Be reliable</td></tr>
+          <tr><td>Seek feedback</td><td>Meet deadlines</td><td>Be respectful</td></tr>
+          <tr><td>Learn from mistakes</td><td>Support your team</td><td>Communicate professionally</td></tr>
+          <tr><td>Observe</td><td>Share ideas</td><td>Take responsibility</td></tr>
+          <tr><td>Develop skills</td><td>Add value</td><td>Protect company information</td></tr>
+        </tbody>
+      </table>
+
+      <h3>The intern's basic responsibilities</h3>
+      <p>Interns should generally:</p>
+      <ul>
+        <li>Arrive prepared and on time.</li>
+        <li>Understand what is expected of them.</li>
+        <li>Complete assigned work.</li>
+        <li>Ask when they do not understand something.</li>
+        <li>Communicate when they encounter a problem.</li>
+        <li>Meet deadlines or communicate early if they cannot.</li>
+        <li>Be respectful to colleagues.</li>
+        <li>Follow company policies.</li>
+        <li>Protect confidential information.</li>
+        <li>Be willing to learn and receive feedback.</li>
+      </ul>
+    </section>
+
+    <section class="lesson" id="checklist">
+      <h2>Checklist</h2>
+      <ul class="checklist">
+        <li><strong>I am able to define</strong> an internship in my own words.</li>
+        <li><strong>I am able to identify</strong> realistic expectations for an internship.</li>
+        <li><strong>I can describe</strong> my basic responsibilities as an intern.</li>
+        <li><strong>I can identify</strong> behaviours and attitudes that can help me make the most of my internship.</li>
+        <li><strong>I am able to recognise</strong> that being an intern means being both a learner and a contributor.</li>
+      </ul>
+    </section>
+
+    <section class="lesson" id="reflection">
+      <h2>Reflection</h2>
+      <div class="spark"><span class="label">Reflect</span><p>What is one thing you can do from your first day to make the most of your internship?</p></div>
+    </section>
+
+    <section class="lesson" id="resources">
+      <h2>Assigned Resources</h2>
+      <div class="resource-list">
+        <div class="resource">Indeed Editorial Team. (2026, June 16). <em>What Is the Purpose of an Internship? (Plus Tips)</em>. Indeed. <a href="https://www.indeed.com/career-advice/finding-a-job/purpose-of-internship" target="_blank" rel="noopener">Open resource ↗</a></div>
+        <div class="resource">University of Evansville. (n.d). <em>Internship Expectations: What an Internship Is and Is Not</em>. <a href="https://www.evansville.edu/career-center/internship-expectations.cfm" target="_blank" rel="noopener">Open resource ↗</a></div>
+      </div>
+
+      <h3>Additional Resources</h3>
+      <div class="resource">EducationUSA Chile. (2025, July 31). <em>03. Internships, Work, and Career Building</em>. [Video]. YouTube. <a href="https://youtu.be/r5gkdxuL7JQ?si=v3QobAEBSpVdTFIx" target="_blank" rel="noopener">Watch video ↗</a></div>
+
+      <h3>References</h3>
+      <div class="resource">National Association of Colleges + Employers. (2023, June). <em>Internship Meaning and Definition: A NACE Guide</em>. <a href="https://naceweb.org/internships" target="_blank" rel="noopener">Open reference ↗</a></div>
+    </section>
+
+    <div class="next">
+      <div><strong>Session 1 complete</strong><p>Return to the roadmap when you are ready to continue.</p></div>
+      <a href="../index.html#modules">Back to roadmap →</a>
+    </div>
+  </article>
+
+  <aside class="side" aria-label="In this session">
+    <strong>In this session</strong>
+    <a href="#purpose">Purpose</a>
+    <a href="#outcomes">Learning Outcomes</a>
+    <a href="#welcome">Welcome Message</a>
+    <a href="#what-is">What is an internship?</a>
+    <a href="#expect">What to expect</a>
+    <a href="#role">Your role as an intern</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#reflection">Reflection</a>
+    <a href="#resources">Resources</a>
+  </aside>
+</main>
+
+<footer>MER Internship Project • Module 1 • Session 1</footer>
+</body>
+</html>
