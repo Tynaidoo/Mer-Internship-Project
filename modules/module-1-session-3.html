@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Module 1 | Session 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c99a3b;--gold-light:#e3c36e;--gold-dark:#8a6425;--ink:#1b1b1b;--muted:#666;--paper:#f7f5ef;--line:#e7e0d4}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,sans-serif;color:var(--ink);line-height:1.65}a{color:inherit;text-decoration:none}
+.site-header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(22px,5vw,78px);background:#fffffff7;border-bottom:1px solid #eee}.brand-space{min-width:160px;height:44px}.site-header nav{display:flex;gap:24px;align-items:center;font-size:.9rem;font-weight:700}.back{border:1px solid #d9cfbc;padding:10px 16px;border-radius:999px}
+.hero{padding:74px clamp(24px,8vw,120px);background:linear-gradient(120deg,#101010,#2a2318);color:#fff}.kicker{font-size:.72rem;letter-spacing:.18em;color:var(--gold-light);font-weight:800;text-transform:uppercase}.hero h1,h2,h3{font-family:"Space Grotesk",sans-serif}.hero h1{font-size:clamp(2.8rem,5.5vw,5rem);line-height:1;letter-spacing:-.05em;max-width:1100px;margin:16px 0}.hero p{max-width:820px;color:#ded7ca}.session-tag{display:inline-block;margin-top:18px;background:var(--gold);color:#111;font-weight:800;padding:9px 14px;border-radius:999px;font-size:.78rem}
+.page{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:56px;max-width:1280px;margin:auto;padding:70px 28px 100px}.side{position:sticky;top:96px;align-self:start;border-left:1px solid var(--line);padding-left:22px}.side strong{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px}.side a{display:block;padding:7px 0;color:#666;font-size:.87rem}
+.lesson{padding:34px 0;border-bottom:1px solid var(--line)}.lesson:first-child{padding-top:0}h2{font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.08;margin:0 0 16px}h3{font-size:1.35rem;margin:26px 0 10px}p,li{color:#4f4f4f}li{margin:8px 0}.purpose{background:var(--paper);border-left:4px solid var(--gold);padding:24px 26px;border-radius:0 18px 18px 0}
+.spark{background:#111;color:#fff;border-radius:22px;padding:28px;margin-top:18px}.spark span{color:var(--gold-light);font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.spark p{color:#fff;font-family:"Space Grotesk";font-size:1.3rem;margin-bottom:0}
+.onboarding-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.onboard-card{background:#111;color:#fff;padding:22px;border-radius:18px;min-height:145px}.onboard-card span{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--gold);color:#111;font-weight:800;margin-bottom:16px}.onboard-card h4{margin:0 0 6px}.onboard-card p{margin:0;color:#d9d0c2;font-size:.86rem}
+.quote{border:1px solid var(--line);background:#fffaf0;border-radius:16px;padding:20px 22px;margin:22px 0;font-weight:700;color:#3a2b13}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.92rem}th,td{border:1px solid var(--line);padding:13px 14px;text-align:left;vertical-align:top}th{background:#f5f0e4}
+.activity{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px;margin-top:22px}.activity-title{display:flex;align-items:center;gap:12px}.badge{background:var(--gold);padding:7px 10px;border-radius:999px;font-size:.72rem;font-weight:800}.activity h3{margin:0}.activity ol{padding-left:22px}.activity textarea{width:100%;margin-top:10px;padding:12px;border:1px solid #d9cfbd;border-radius:10px;font:inherit;min-height:80px}
+.checklist{list-style:none;padding:0}.checklist li{position:relative;padding:12px 14px 12px 44px;border-bottom:1px solid var(--line);margin:0}.checklist li:before{content:"✓";position:absolute;left:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#111;font-weight:900}
+.resource{border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.resource a{color:var(--gold-dark);font-weight:700;text-decoration:underline}.next{display:flex;justify-content:space-between;align-items:center;gap:20px;background:#111;color:#fff;border-radius:22px;padding:24px 28px;margin-top:36px}.next p{color:#d4ccbe;margin:4px 0}.next a{background:var(--gold);color:#111;font-weight:800;padding:12px 16px;border-radius:999px}
+footer{padding:28px clamp(24px,8vw,120px);background:var(--paper);border-top:1px solid var(--line);color:#666;font-size:.82rem}
+@media(max-width:900px){.page{grid-template-columns:1fr}.side{display:none}.onboarding-grid{grid-template-columns:1fr 1fr}.site-header nav a:not(.back){display:none}}@media(max-width:600px){.hero{padding:55px 22px}.page{padding:48px 20px}.onboarding-grid{grid-template-columns:1fr}.next{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="brand-space"></div><nav><a href="index.html">Course Journey</a><a href="index.html">Course Menu</a><a href="../index.html#about">About</a><a class="back" href="index.html#module-1">← Module 1 sessions</a></nav></header>
+<header class="hero"><span class="kicker">Module 1 • Session 3</span><h1>Onboarding - Understanding the Company Handbook</h1><p>Understand onboarding, company policies and workplace procedures, including where to find important information and who to approach when you are unsure what to do.</p><span class="session-tag">Onboarding • Policies • Procedures • Confidentiality</span></header>
+
+<main class="page"><article>
+<section class="lesson" id="purpose"><h2>Purpose</h2><div class="purpose">To introduce interns to onboarding, company policies and workplace procedures and help them understand where to find important information and who to approach when they are unsure what to do.</div></section>
+
+<section class="lesson" id="outcomes"><h2>Learning Outcomes</h2><p>By the end of the session, interns will be able to:</p><ul>
+<li><strong>Explain</strong> what onboarding is.</li><li><strong>Explain</strong> why organisations have policies and procedures.</li><li><strong>Locate</strong> important information in their company's handbook.</li><li><strong>Identify</strong> basic expectations around attendance, leave and workplace behaviour.</li><li><strong>Recognise</strong> the importance of confidentiality and data protection.</li><li><strong>Identify</strong> appropriate use of company technology and social media.</li></ul>
+<div class="spark"><span>Spark</span><p>Imagine you are unsure whether you are allowed to do something at work. What would you do first? Where would you look? Who would you ask?</p></div></section>
+
+<section class="lesson" id="onboarding"><h2>What is onboarding?</h2><p>Onboarding is the process of helping a new employee understand the organisation, their role, their team and how work gets done.</p><p>Onboarding can include:</p>
+<div class="onboarding-grid" aria-label="Examples of onboarding">
+<div class="onboard-card"><span>1</span><h4>Organisation</h4><p>Understanding the company, its purpose, culture and structure.</p></div>
+<div class="onboard-card"><span>2</span><h4>Your role</h4><p>Learning your responsibilities, expectations and priorities.</p></div>
+<div class="onboard-card"><span>3</span><h4>People &amp; team</h4><p>Meeting colleagues, supervisors and the people you will work with.</p></div>
+<div class="onboard-card"><span>4</span><h4>Policies &amp; systems</h4><p>Learning the procedures, tools, rules and systems used in the workplace.</p></div>
+</div>
+<div class="quote">Being reliable means being where you are expected to be, when you are expected to be there. If something prevents you from attending work or meeting your expected hours, follow the company's procedure and communicate with the appropriate person.</div>
+<p>The table below highlights a few generic examples of company policies.</p>
+<table><thead><tr><th>Policy</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><strong>Attendance &amp; working hours</strong></td><td>Being reliable means being where you are expected to be, when you are expected to be there. If something prevents you from attending work or meeting your expected hours, follow the company's procedure and communicate with the appropriate person.</td></tr>
+<tr><td><strong>Leave and time off</strong></td><td>Understand how leave is requested, who approves it and how much notice is required. Never assume that simply telling a colleague means your leave has been approved.</td></tr>
+<tr><td><strong>Dress and appearance</strong></td><td>Workplace expectations differ across organisations and industries. Understand what is appropriate for your particular workplace rather than assuming that one dress standard applies everywhere.</td></tr>
+<tr><td><strong>Workplace behaviour</strong></td><td>Professional behaviour means treating colleagues, clients and other stakeholders with respect. It includes how you speak to people, behave in meetings, use company resources and respond to disagreement.</td></tr>
+<tr><td><strong>Health and safety</strong></td><td>You are responsible for following health and safety procedures and reporting hazards, incidents or concerns through the appropriate channels.</td></tr>
+<tr><td><strong>Confidentiality</strong></td><td>Information you encounter at work may not be yours to share. Confidential information can include client information, internal documents, financial information, passwords, business plans and personal information.</td></tr>
+<tr><td><strong>Data protection and privacy</strong></td><td>Personal and sensitive information should only be accessed, used or shared for legitimate work purposes and in accordance with company policy and applicable law.</td></tr>
+<tr><td><strong>Technology</strong></td><td>Company devices, accounts, systems and networks are provided for work-related purposes according to company policy. Keep passwords secure and use systems responsibly.</td></tr>
+<tr><td><strong>Social media</strong></td><td>Remember that your online activity can affect how others perceive you and, in some situations, may affect the organisation. Follow the company's social media policy and do not share confidential information.</td></tr>
+<tr><td><strong>Respectful workplace / anti-harassment</strong></td><td>Everyone has the right to a workplace where they are treated with dignity and respect. Harassment, bullying, discrimination and inappropriate conduct should not be ignored. Know the channels available for raising concerns.</td></tr>
+</tbody></table></section>
+
+<section class="lesson" id="why"><h2>Why do companies have policies?</h2><p>Rather than viewing policies as a list of “rules you must obey”, understand their purpose.</p><p>Policies help organisations:</p><ul><li>Create consistent expectations.</li><li>Protect employees and the organisation.</li><li>Support fairness.</li><li>Protect confidential information.</li><li>Maintain health and safety.</li><li>Meet legal and regulatory requirements.</li><li>Explain what to do in common situations.</li><li>Provide processes for dealing with problems.</li></ul></section>
+
+<section class="lesson" id="activity"><h2>Activity: The Company Handbook</h2><div class="activity"><div class="activity-title"><span class="badge">Activity</span><h3>Explore your company handbook</h3></div><p>Take a look at your company’s handbook. Using your handbook, answer the following questions.</p><ol>
+<li>What are the normal working hours?<textarea aria-label="Normal working hours"></textarea></li>
+<li>Who should you contact if you are sick?<textarea aria-label="Who to contact if sick"></textarea></li>
+<li>Where do you find the leave procedure?<textarea aria-label="Leave procedure"></textarea></li>
+<li>What does the company say about confidentiality?<textarea aria-label="Confidentiality policy"></textarea></li>
+<li>Who can you contact if you experience inappropriate behaviour?<textarea aria-label="Contact for inappropriate behaviour"></textarea></li>
+</ol></div></section>
+
+<section class="lesson" id="checklist"><h2>Checklist</h2><ul class="checklist">
+<li><strong>I am able to explain</strong> what onboarding is.</li><li><strong>I am able to explain</strong> why organisations have policies and procedures.</li><li><strong>I can locate</strong> important information in my company's handbook.</li><li><strong>I can identify</strong> basic expectations around attendance, leave and workplace behaviour.</li><li><strong>I can recognise</strong> the importance of confidentiality and data protection.</li><li><strong>I am able to identify</strong> appropriate use of company technology and social media.</li>
+</ul></section>
+
+<section class="lesson" id="reflection"><h2>Reflection</h2><div class="spark"><span>Reflect</span><p>After exploring the handbook, what is one policy or procedure you think you should become familiar with before starting your first week? Why?</p></div></section>
+
+<section class="lesson" id="resources"><h2>Assigned Resources</h2>
+<div class="resource">Society for Human Resource Management. (2024, June 14). <em>Onboarding definition &amp; overview</em>. <a href="https://www.shrm.org/topics-tools/topics/onboarding" target="_blank" rel="noopener">Open resource ↗</a></div>
+<div class="resource">Whited, J. (2025, November 21). <em>Employee Handbook: Definition, Importance and Sections</em>. Indeed. <a href="https://ca.indeed.com/career-advice/career-development/employee-handbook" target="_blank" rel="noopener">Open resource ↗</a></div>
+<h3>Additional Resources</h3><p>No additional resources were provided for this session.</p>
+<h3>References</h3>
+<div class="resource">Indeed Employer Content Team. (2025, December 7). <em>8 Company Policies to Consider for Your Business</em>. Indeed. <a href="https://www.indeed.com/hire/c/info/company-policies" target="_blank" rel="noopener">Open reference ↗</a></div>
+<div class="resource">Whited, J. (2025, November 21). <em>Employee Handbook: Definition, Importance and Sections</em>. Indeed. <a href="https://ca.indeed.com/career-advice/career-development/employee-handbook" target="_blank" rel="noopener">Open reference ↗</a></div>
+</section>
+
+<div class="next"><div><strong>Session 3 complete</strong><p>Return to the Module 1 session list whenever you want to revisit a session.</p></div><a href="index.html#module-1">View Module 1 sessions →</a></div>
+</article>
+<aside class="side"><strong>In this session</strong><a href="#purpose">Purpose</a><a href="#outcomes">Learning Outcomes</a><a href="#onboarding">What is onboarding?</a><a href="#why">Why policies?</a><a href="#activity">Company Handbook activity</a><a href="#checklist">Checklist</a><a href="#reflection">Reflection</a><a href="#resources">Resources</a></aside>
+</main><footer>MER Internship Project • Module 1 • Session 3</footer>
+</body></html>
