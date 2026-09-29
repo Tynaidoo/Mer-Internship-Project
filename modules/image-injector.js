@@ -29,32 +29,68 @@
   if (!entries) return;
 
   const style = document.createElement('style');
-  style.textContent = `.course-image{margin:26px auto 12px;max-width:920px}.course-image img{display:block;width:100%;height:auto;max-height:680px;object-fit:contain;border-radius:18px;border:1px solid #e7e0d4;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.07)}@media(max-width:700px){.course-image{margin:20px 0 10px}.course-image img{border-radius:12px}}`;
+  style.textContent = `
+    .course-image{margin:28px 0 32px;max-width:100%;}
+    .course-image-frame{background:#fff;border:1px solid #e7e0d4;border-radius:22px;padding:14px;box-shadow:0 14px 34px rgba(0,0,0,.075);overflow:hidden;}
+    .course-image img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;border-radius:13px;background:#fff;}
+    .course-image.compact{max-width:760px;margin-left:auto;margin-right:auto;}
+    .course-image + h3,.course-image + h4{margin-top:38px;}
+    @media(max-width:700px){.course-image{margin:22px 0 26px}.course-image-frame{padding:8px;border-radius:16px}.course-image img{border-radius:10px;max-height:none}}
+  `;
   document.head.appendChild(style);
 
-  const candidates = [...document.querySelectorAll('h2,h3,h4,p,div,blockquote')];
   const norm = s => (s || '').replace(/\s+/g,' ').trim().toLowerCase();
+  const selector = 'h2,h3,h4,p,li,blockquote,.purpose,.activity-title,.concept,.quote,.prompt';
+  const candidates = [...document.querySelectorAll(selector)];
+
+  // Prefer the smallest, most specific matching element. This prevents a large
+  // parent div/article from matching first and pushing the image to page bottom.
   const findAnchor = needle => {
     const n = norm(needle);
-    return candidates.find(el => norm(el.textContent).includes(n));
+    const matches = candidates.filter(el => norm(el.textContent).includes(n));
+    if (!matches.length) return null;
+    const exact = matches.find(el => norm(el.textContent) === n);
+    if (exact) return exact;
+    return matches.sort((a,b) => norm(a.textContent).length - norm(b.textContent).length)[0];
+  };
+
+  const makeFigure = file => {
+    const figure = document.createElement('figure');
+    figure.className = 'course-image';
+    const frame = document.createElement('div');
+    frame.className = 'course-image-frame';
+    const img = document.createElement('img');
+    img.src = `../${file}`;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.dataset.courseImage = file;
+    img.addEventListener('load', () => {
+      if (img.naturalWidth && img.naturalHeight && img.naturalWidth / img.naturalHeight < 1.15) figure.classList.add('compact');
+    });
+    frame.appendChild(img);
+    figure.appendChild(frame);
+    return figure;
   };
 
   entries.forEach(([file, anchorText]) => {
     if (document.querySelector(`img[data-course-image="${file}"]`)) return;
     const anchor = findAnchor(anchorText);
     if (!anchor) return;
-    const figure = document.createElement('figure');
-    figure.className = 'course-image';
-    const img = document.createElement('img');
-    img.src = `../${file}`;
-    img.alt = '';
-    img.loading = 'lazy';
-    img.dataset.courseImage = file;
-    figure.appendChild(img);
+    const figure = makeFigure(file);
 
     const placeholder = anchor.closest('.purpose');
     if (placeholder && /placeholder|image can be inserted|infographic/i.test(placeholder.textContent)) {
       placeholder.replaceWith(figure);
+      return;
+    }
+
+    // Headings introduce the content the visual explains, so place the visual
+    // after the first explanatory paragraph/list/block rather than directly under
+    // the heading. Text anchors get the visual immediately after that text.
+    if (/^H[2-4]$/.test(anchor.tagName)) {
+      let target = anchor.nextElementSibling;
+      while (target && /^H[2-4]$/.test(target.tagName)) target = target.nextElementSibling;
+      (target || anchor).insertAdjacentElement('afterend', figure);
     } else {
       anchor.insertAdjacentElement('afterend', figure);
     }
