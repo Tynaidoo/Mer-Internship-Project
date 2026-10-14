@@ -171,70 +171,51 @@
     activity.replaceWith(card);
   });
 
-  // Open every linked activity in an accessible full-screen overlay.
-  // The direct link remains available for hosts that disallow iframe embedding.
-  const overlayStyles=document.createElement('style');
-  overlayStyles.textContent=`
-    .course-activity-overlay[hidden]{display:none!important}
-    .course-activity-overlay{position:fixed;inset:0;z-index:99999;background:#111;display:flex;flex-direction:column}
-    .course-activity-toolbar{flex:0 0 auto;display:flex;align-items:center;gap:14px;justify-content:space-between;padding:12px clamp(14px,3vw,32px);background:#111;color:#fff;border-bottom:2px solid #c99a3b}
-    .course-activity-name{font-weight:800;font-size:clamp(.9rem,1.5vw,1.12rem);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .course-activity-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
-    .course-activity-actions a,.course-activity-close{display:inline-flex;align-items:center;justify-content:center;border:1px solid #c99a3b;border-radius:999px;padding:9px 15px;font:700 .86rem Inter,system-ui,sans-serif;cursor:pointer;text-decoration:none}
-    .course-activity-actions a{color:#fff!important;background:transparent}
-    .course-activity-close{background:#c99a3b;color:#111}
-    .course-activity-frame{display:block;flex:1;min-height:0;width:100%;border:0;background:#fff}
-    body.course-activity-open{overflow:hidden}
-    @media(max-width:600px){.course-activity-toolbar{padding:10px;gap:8px}.course-activity-actions{gap:6px}.course-activity-actions a,.course-activity-close{padding:8px 10px;font-size:.75rem}}
+  // Embed the existing published interactive activities directly below their lesson cards.
+  // Keep the original activity URLs intact; users can open them separately if embedding is blocked.
+  const embeddedStyle=document.createElement('style');
+  embeddedStyle.textContent=`
+    .inline-activity-panel[hidden]{display:none!important}
+    .inline-activity-panel{margin-top:18px;border:1px solid #e7e0d4;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 10px 28px rgba(0,0,0,.06)}
+    .inline-activity-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#111;color:#fff;padding:12px 16px}
+    .inline-activity-toolbar span{font-weight:700}
+    .inline-activity-toolbar a,.inline-activity-toolbar button{border:1px solid #c99a3b;border-radius:999px;padding:8px 12px;font:700 .82rem Inter,system-ui,sans-serif;text-decoration:none;cursor:pointer}
+    .inline-activity-toolbar a{color:#fff!important}
+    .inline-activity-toolbar button{background:#c99a3b;color:#111}
+    .inline-activity-frame{width:100%;height:min(78vh,850px);min-height:520px;border:0;display:block;background:#fff}
+    @media(max-width:700px){.inline-activity-frame{height:75vh;min-height:460px}}
   `;
-  document.head.appendChild(overlayStyles);
-  const overlay=document.createElement('section');
-  overlay.className='course-activity-overlay';
-  overlay.hidden=true;
-  overlay.setAttribute('role','dialog');
-  overlay.setAttribute('aria-modal','true');
-  overlay.setAttribute('aria-label','Interactive activity');
-  overlay.innerHTML='<div class="course-activity-toolbar"><span class="course-activity-name" id="course-activity-name">Interactive activity</span><div class="course-activity-actions"><a class="course-activity-direct" href="#" target="_blank" rel="noopener noreferrer">Open separately ↗</a><button class="course-activity-close" type="button" aria-label="Close activity and return to lesson">✕ Back to lesson</button></div></div><iframe class="course-activity-frame" title="Interactive activity" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
-  document.body.appendChild(overlay);
-  const frame=overlay.querySelector('iframe');
-  const direct=overlay.querySelector('.course-activity-direct');
-  const closeButton=overlay.querySelector('.course-activity-close');
-  const name=overlay.querySelector('.course-activity-name');
-  let returnFocus=null;
-  const closeActivity=()=>{
-    if(overlay.hidden)return;
-    overlay.hidden=true;
-    document.body.classList.remove('course-activity-open');
-    frame.removeAttribute('src');
-    if(returnFocus&&returnFocus.isConnected)returnFocus.focus();
-  };
-  closeButton.addEventListener('click',closeActivity);
-  document.addEventListener('keydown',event=>{
-    if(overlay.hidden)return;
-    if(event.key==='Escape'){event.preventDefault();closeActivity();}
-    if(event.key==='Tab'){
-      const controls=[direct,closeButton];
-      const current=controls.indexOf(document.activeElement);
-      if(event.shiftKey&&current===0){event.preventDefault();closeButton.focus();}
-      else if(!event.shiftKey&&current===1){event.preventDefault();direct.focus();}
-    }
-  });
+  document.head.appendChild(embeddedStyle);
   document.addEventListener('click',event=>{
     const link=event.target.closest('a[href]');
-    if(!link||overlay.contains(link)||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+    if(!link||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+    const card=link.closest('.interactive-link-card,.activity');
+    if(!card||link.closest('.inline-activity-panel'))return;
     const url=new URL(link.href,location.href);
-    const isActivity=(url.hostname.endsWith('.gautengpestcontrol.chatgpt.site')||url.pathname.endsWith('/activity-player.html')) &&
-      (link.closest('.activity,.interactive-link-card')!==null);
+    const isActivity=url.hostname.endsWith('.gautengpestcontrol.chatgpt.site')||url.pathname.endsWith('/activity-player.html');
     if(!isActivity)return;
     event.preventDefault();
-    returnFocus=link;
-    name.textContent=link.closest('.interactive-link-card,.activity')?.querySelector('h2,h3')?.textContent?.trim()||'Interactive activity';
-    direct.href=url.href;
-    frame.title=name.textContent;
-    overlay.hidden=false;
-    document.body.classList.add('course-activity-open');
-    frame.src=url.href;
-    closeButton.focus();
+    let panel=card.querySelector('.inline-activity-panel');
+    if(!panel){
+      panel=document.createElement('div');
+      panel.className='inline-activity-panel';
+      panel.innerHTML='<div class="inline-activity-toolbar"><span>Interactive activity</span><div><a target="_blank" rel="noopener noreferrer">Open separately ↗</a> <button type="button">Close activity ✕</button></div></div><iframe class="inline-activity-frame" title="Interactive activity" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+      panel.querySelector('a').href=url.href;
+      panel.querySelector('button').addEventListener('click',()=>{
+        panel.hidden=true;
+        panel.querySelector('iframe').removeAttribute('src');
+        link.focus();
+      });
+      card.appendChild(panel);
+    }
+    if(!panel.hidden&&panel.querySelector('iframe').getAttribute('src')) {
+      panel.scrollIntoView({behavior:'smooth',block:'start'});
+      return;
+    }
+    panel.hidden=false;
+    panel.querySelector('iframe').src=url.href;
+    link.setAttribute('aria-expanded','true');
+    panel.scrollIntoView({behavior:'smooth',block:'start'});
   });
 
   function escapeHtml(value){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
