@@ -171,5 +171,71 @@
     activity.replaceWith(card);
   });
 
+  // Open every linked activity in an accessible full-screen overlay.
+  // The direct link remains available for hosts that disallow iframe embedding.
+  const overlayStyles=document.createElement('style');
+  overlayStyles.textContent=`
+    .course-activity-overlay[hidden]{display:none!important}
+    .course-activity-overlay{position:fixed;inset:0;z-index:99999;background:#111;display:flex;flex-direction:column}
+    .course-activity-toolbar{flex:0 0 auto;display:flex;align-items:center;gap:14px;justify-content:space-between;padding:12px clamp(14px,3vw,32px);background:#111;color:#fff;border-bottom:2px solid #c99a3b}
+    .course-activity-name{font-weight:800;font-size:clamp(.9rem,1.5vw,1.12rem);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .course-activity-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+    .course-activity-actions a,.course-activity-close{display:inline-flex;align-items:center;justify-content:center;border:1px solid #c99a3b;border-radius:999px;padding:9px 15px;font:700 .86rem Inter,system-ui,sans-serif;cursor:pointer;text-decoration:none}
+    .course-activity-actions a{color:#fff!important;background:transparent}
+    .course-activity-close{background:#c99a3b;color:#111}
+    .course-activity-frame{display:block;flex:1;min-height:0;width:100%;border:0;background:#fff}
+    body.course-activity-open{overflow:hidden}
+    @media(max-width:600px){.course-activity-toolbar{padding:10px;gap:8px}.course-activity-actions{gap:6px}.course-activity-actions a,.course-activity-close{padding:8px 10px;font-size:.75rem}}
+  `;
+  document.head.appendChild(overlayStyles);
+  const overlay=document.createElement('section');
+  overlay.className='course-activity-overlay';
+  overlay.hidden=true;
+  overlay.setAttribute('role','dialog');
+  overlay.setAttribute('aria-modal','true');
+  overlay.setAttribute('aria-label','Interactive activity');
+  overlay.innerHTML='<div class="course-activity-toolbar"><span class="course-activity-name" id="course-activity-name">Interactive activity</span><div class="course-activity-actions"><a class="course-activity-direct" href="#" target="_blank" rel="noopener noreferrer">Open separately ↗</a><button class="course-activity-close" type="button" aria-label="Close activity and return to lesson">✕ Back to lesson</button></div></div><iframe class="course-activity-frame" title="Interactive activity" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+  document.body.appendChild(overlay);
+  const frame=overlay.querySelector('iframe');
+  const direct=overlay.querySelector('.course-activity-direct');
+  const closeButton=overlay.querySelector('.course-activity-close');
+  const name=overlay.querySelector('.course-activity-name');
+  let returnFocus=null;
+  const closeActivity=()=>{
+    if(overlay.hidden)return;
+    overlay.hidden=true;
+    document.body.classList.remove('course-activity-open');
+    frame.removeAttribute('src');
+    if(returnFocus&&returnFocus.isConnected)returnFocus.focus();
+  };
+  closeButton.addEventListener('click',closeActivity);
+  document.addEventListener('keydown',event=>{
+    if(overlay.hidden)return;
+    if(event.key==='Escape'){event.preventDefault();closeActivity();}
+    if(event.key==='Tab'){
+      const controls=[direct,closeButton];
+      const current=controls.indexOf(document.activeElement);
+      if(event.shiftKey&&current===0){event.preventDefault();closeButton.focus();}
+      else if(!event.shiftKey&&current===1){event.preventDefault();direct.focus();}
+    }
+  });
+  document.addEventListener('click',event=>{
+    const link=event.target.closest('a[href]');
+    if(!link||overlay.contains(link)||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+    const url=new URL(link.href,location.href);
+    const isActivity=(url.hostname.endsWith('.gautengpestcontrol.chatgpt.site')||url.pathname.endsWith('/activity-player.html')) &&
+      (link.closest('.activity,.interactive-link-card')!==null);
+    if(!isActivity)return;
+    event.preventDefault();
+    returnFocus=link;
+    name.textContent=link.closest('.interactive-link-card,.activity')?.querySelector('h2,h3')?.textContent?.trim()||'Interactive activity';
+    direct.href=url.href;
+    frame.title=name.textContent;
+    overlay.hidden=false;
+    document.body.classList.add('course-activity-open');
+    frame.src=url.href;
+    closeButton.focus();
+  });
+
   function escapeHtml(value){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 })();
