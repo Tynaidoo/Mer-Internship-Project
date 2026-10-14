@@ -47,17 +47,127 @@
   // Replace static activity blocks with links to a separate interactive activity experience,
   // matching the link-based pattern already used in Module 7 Sessions 1 and 2.
   // Existing purpose-built chatgpt.site activities are deliberately preserved.
+  const activityLinks={
+    "module-1.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/my-internship-expectations-73",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/expectation-or-misconception-94"
+    ],
+    "module-1-session-2.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/organisational-roles-core-responsibilities-173",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/build-your-introduction-198"
+    ],
+    "module-1-session-3.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/the-company-handbook-270"
+    ],
+    "module-1-session-4.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/values-in-action-334",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/smart-goal-scenario-challenge-374"
+    ],
+    "module-2-session-1.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/what-does-professionalism-look-like-454",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/same-behaviour-different-workplace-485"
+    ],
+    "module-2-session-2.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/understanding-technical-and-human-skills-540",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/the-ai-gap-bridge-challenge-625"
+    ],
+    "module-2-session-3.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/working-styles-682",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/whats-your-conflict-style-696"
+    ],
+    "module-2-session-4.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/self-directed-mindset-reframing-audit-758",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/turning-setbacks-into-growth-774"
+    ],
+    "module-2-session-5.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/emotional-intelligence-in-the-workplace-849",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/managing-emotions-charged-message-challenge-910"
+    ],
+    "module-2-session-6.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/strategic-questioning-ask-for-help-professionally-955",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/information-literacy-kolbs-learning-cycle-975"
+    ],
+    "module-2-session-7.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/own-your-career-build-your-personal-brand-1030",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/informational-interview-outreach-workshop-1070"
+    ],
+    "module-3-session-1.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/ai-in-the-workplace-1119",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/prompt-engineering-optimisation-challenge-1132"
+    ],
+    "module-3-session-2.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/can-you-trust-the-information-1180",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/the-ai-hallucination-fact-check-challenge-1199"
+    ],
+    "module-3-session-3.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/can-you-trust-the-ai-output-1247",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/human-skills-in-an-ai-enabled-workplace-1275"
+    ],
+    "module-3-session-4.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/what-data-is-this-1359",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/spot-the-phish-1376"
+    ],
+    "module-4-session-1.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/my-learning-fear-map-1475",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/from-learning-fear-to-action-1480"
+    ],
+    "module-4-session-2.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/know-your-time-management-style-1570",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/importance-of-work-study-life-balance-1586"
+    ],
+    "module-4-session-3.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/break-the-project-down-1664",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/scenario-activity-the-project-is-falling-behind-1695"
+    ],
+    "module-5-session-1.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/build-your-remote-worker-toolkit-1769",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/the-virtual-internship-team-1826"
+    ],
+    "module-5-session-2.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/microsoft-365-workplace-challenge-1910",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/complete-the-digital-workplace-task-1930"
+    ],
+    "module-5-session-3.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/feedback-detective-2038",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/scenario-activity-the-feedback-conversation-2077"
+    ],
+    "module-6-session-1.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/what-would-you-include-2178",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/evidence-or-just-a-claim-2222",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/create-your-internship-eportfolio-2249",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/develop-your-professional-introduction-2275"
+    ],
+    "module-6-session-2.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/what-does-your-profile-communicate-2367",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/develop-your-professional-headline-2386",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/develop-your-about-section-2413",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/build-and-review-your-linkedin-profile-2471"
+    ],
+    "module-6-session-3.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/what-does-your-cv-say-about-you-2586",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/from-experience-to-skills-2606",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/writing-effective-experience-statements-2662",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/develop-and-review-your-cv-2720"
+    ],
+    "module-7-session-3.html": [
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/workshop-or-journal-club-3468",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/design-a-mini-workshop-3523",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/breaking-down-an-academic-article-3566",
+      "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/plan-your-workshop-or-journal-club-contribution-3650"
+    ]
+  };
   const activities=[...document.querySelectorAll('.activity')];
   let localIndex=0;
   activities.forEach(activity=>{
     if(activity.querySelector('a[href*="gautengpestcontrol.chatgpt.site"]')) return;
     const index=localIndex++;
+    const externalUrl=(activityLinks[page]||[])[index];
     const heading=activity.querySelector('h2,h3');
     const badge=activity.querySelector('.badge');
     const title=(heading&&heading.textContent.trim())||(badge&&badge.textContent.trim())||`Activity ${index+1}`;
     const card=document.createElement('div');
     card.className='interactive-link-card';
-    card.innerHTML=`<span class="ia-kicker">Interactive activity</span><h3>${escapeHtml(title)}</h3><p>Complete this activity in the interactive learning experience.</p><a href="activity-player.html?session=${encodeURIComponent(page)}&activity=${index}">Open Interactive Activity →</a>`;
+    card.innerHTML=`<span class="ia-kicker">Interactive activity</span><h3>${escapeHtml(title)}</h3><p>Complete this activity in the interactive learning experience.</p><a href="${externalUrl||`activity-player.html?session=${encodeURIComponent(page)}&activity=${index}`}"${externalUrl?' target="_blank" rel="noopener noreferrer"':""}>Open Interactive Activity →</a>`;
     activity.replaceWith(card);
   });
 
