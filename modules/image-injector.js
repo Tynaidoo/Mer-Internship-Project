@@ -157,7 +157,7 @@
     ]
   };
   // These sessions contain new, document-based reflection activities; preserve them as written.
-  const preserveWorksheetActivities=['module-7-session-3.html','module-7-session-4.html'].includes(page);
+  const preserveWorksheetActivities=['module-7-session-3.html','module-7-session-4.html','module-8-session-1.html','module-8-session-2.html'].includes(page);
   const activities=[...document.querySelectorAll('.activity')];
   let localIndex=0;
   activities.forEach(activity=>{
