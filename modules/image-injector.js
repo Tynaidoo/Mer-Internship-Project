@@ -221,5 +221,84 @@
     panel.scrollIntoView({behavior:'smooth',block:'start'});
   });
 
+  // Convert lesson YouTube links to compact, in-page players without altering activity links.
+  const videoCss=document.createElement('style');
+  videoCss.textContent=`
+    .lesson-video{max-width:560px;margin:15px 0 24px}
+    .lesson-video-trigger{display:inline-flex;align-items:center;gap:9px;border:1px solid #d5c4a1;background:#fff;border-radius:10px;padding:10px 15px;color:#174d48;font:700 .94rem Inter,system-ui,sans-serif;cursor:pointer;text-align:left}
+    .lesson-video-trigger:hover,.lesson-video-trigger:focus-visible{background:#f7f5ef}
+    .lesson-video-player{margin-top:12px;position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:12px;background:#111;box-shadow:0 6px 20px #0002}
+    .lesson-video-player[hidden]{display:none}
+    .lesson-video-player iframe{display:block;width:100%;height:100%;border:0}
+    .lesson-video-fallback{font-size:.84rem;margin:8px 0 0}
+    .lesson-video-fallback a{color:#087a70;text-decoration:underline}
+  `;
+  document.head.appendChild(videoCss);
+  function youtubeId(raw){
+    try{
+      const url=new URL(raw,location.href);
+      if(url.hostname==='youtu.be'||url.hostname==='www.youtu.be')return url.pathname.split('/')[1]||null;
+      if(['youtube.com','www.youtube.com','m.youtube.com','youtube-nocookie.com','www.youtube-nocookie.com'].includes(url.hostname)){
+        return url.searchParams.get('v')||(url.pathname.match(/^\/(?:embed|shorts|live)\/([^/]+)/)||[])[1]||null;
+      }
+    }catch(error){}
+    return null;
+  }
+  document.querySelectorAll('main a[href]').forEach(link=>{
+    const id=youtubeId(link.href);
+    if(!id||!(/^[a-zA-Z0-9_-]{11}$/.test(id)))return;
+    // Keep duplicate references to the same video from showing two separate players in one lesson.
+    if(document.querySelector('.lesson-video[data-video-id="'+id+'"]')){
+      link.textContent='Watch video above ↑';
+      link.removeAttribute('target');
+      link.href='#'+document.querySelector('.lesson-video[data-video-id="'+id+'"]').id;
+      return;
+    }
+    const holder=document.createElement('div');
+    holder.className='lesson-video';
+    holder.dataset.videoId=id;
+    holder.id='lesson-video-'+id;
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='lesson-video-trigger';
+    button.setAttribute('aria-expanded','false');
+    button.textContent='▶ '+(link.textContent.trim().replace(/[↗→]/g,'').trim()||'Watch video');
+    const player=document.createElement('div');
+    player.className='lesson-video-player';
+    player.hidden=true;
+    const fallback=document.createElement('p');
+    fallback.className='lesson-video-fallback';
+    const direct=document.createElement('a');
+    direct.href='https://www.youtube.com/watch?v='+encodeURIComponent(id);
+    direct.target='_blank';
+    direct.rel='noopener noreferrer';
+    direct.textContent='If the video cannot play here, open it on YouTube ↗';
+    fallback.appendChild(direct);
+    button.addEventListener('click',()=>{
+      if(!player.hidden){
+        player.hidden=true;
+        player.replaceChildren();
+        button.setAttribute('aria-expanded','false');
+        button.textContent='▶ '+(link.dataset.videoLabel||'Watch video');
+      }else{
+        const iframe=document.createElement('iframe');
+        iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id);
+        iframe.title='Course video';
+        iframe.loading='lazy';
+        iframe.referrerPolicy='strict-origin-when-cross-origin';
+        iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen=true;
+        player.appendChild(iframe);
+        player.hidden=false;
+        button.setAttribute('aria-expanded','true');
+        button.textContent='✕ Close video';
+      }
+    });
+    link.dataset.videoLabel=link.textContent.trim().replace(/[↗→]/g,'').trim()||'Watch video';
+    const parent=link.closest('.resource')||link.closest('p')||link;
+    parent.replaceWith(holder);
+    holder.append(button,player,fallback);
+  });
+
   function escapeHtml(value){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 })();
