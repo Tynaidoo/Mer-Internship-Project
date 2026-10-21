@@ -156,9 +156,12 @@
       "https://internship-learning-activities.gautengpestcontrol.chatgpt.site/activity/plan-your-workshop-or-journal-club-contribution-3650"
     ]
   };
+  // These sessions contain new, document-based reflection activities; preserve them as written.
+  const preserveWorksheetActivities=['module-7-session-3.html','module-7-session-4.html'].includes(page);
   const activities=[...document.querySelectorAll('.activity')];
   let localIndex=0;
   activities.forEach(activity=>{
+    if(preserveWorksheetActivities)return;
     if(activity.querySelector('a[href*="gautengpestcontrol.chatgpt.site"]')) return;
     const index=localIndex++;
     const externalUrl=(activityLinks[page]||[])[index];
