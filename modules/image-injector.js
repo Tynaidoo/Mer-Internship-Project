@@ -224,14 +224,18 @@
   // Convert lesson YouTube links to compact, in-page players without altering activity links.
   const videoCss=document.createElement('style');
   videoCss.textContent=`
-    .lesson-video{max-width:560px;margin:15px 0 24px}
-    .lesson-video-trigger{display:inline-flex;align-items:center;gap:9px;border:1px solid #d5c4a1;background:#fff;border-radius:10px;padding:10px 15px;color:#174d48;font:700 .94rem Inter,system-ui,sans-serif;cursor:pointer;text-align:left}
-    .lesson-video-trigger:hover,.lesson-video-trigger:focus-visible{background:#f7f5ef}
-    .lesson-video-player{margin-top:12px;position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:12px;background:#111;box-shadow:0 6px 20px #0002}
+    .lesson-video{background:#f7f5ef;border:1px solid #e7e0d4;border-radius:22px;padding:26px 28px;margin:22px 0;box-shadow:0 10px 28px rgba(0,0,0,.045)}
+    .lesson-video-kicker{display:inline-block;background:#c99a3b;color:#111;font-size:.72rem;font-weight:800;padding:7px 11px;border-radius:999px;margin-bottom:12px}
+    .lesson-video h3{margin:4px 0 8px;color:#181818}
+    .lesson-video-description{margin:0 0 18px;color:#5b5b5b}
+    .lesson-video-trigger{display:inline-block;background:#111;color:#fff!important;font:800 .94rem Inter,system-ui,sans-serif;border:0;border-radius:999px;padding:12px 18px;cursor:pointer;transition:.2s}
+    .lesson-video-trigger:hover,.lesson-video-trigger:focus-visible{background:#c99a3b;color:#111!important;transform:translateY(-1px)}
+    .lesson-video-player{margin-top:18px;position:relative;aspect-ratio:16/9;max-width:700px;overflow:hidden;border-radius:12px;background:#111;box-shadow:0 6px 20px #0002}
     .lesson-video-player[hidden]{display:none}
     .lesson-video-player iframe{display:block;width:100%;height:100%;border:0}
-    .lesson-video-fallback{font-size:.84rem;margin:8px 0 0}
+    .lesson-video-fallback{font-size:.84rem;margin:12px 0 0;color:#5b5b5b}
     .lesson-video-fallback a{color:#087a70;text-decoration:underline}
+    @media(max-width:700px){.lesson-video{padding:20px 18px}}
   `;
   document.head.appendChild(videoCss);
   function youtubeId(raw){
@@ -258,11 +262,19 @@
     holder.className='lesson-video';
     holder.dataset.videoId=id;
     holder.id='lesson-video-'+id;
+    const kicker=document.createElement('span');
+    kicker.className='lesson-video-kicker';
+    kicker.textContent='Video';
+    const heading=document.createElement('h3');
+    heading.textContent=(link.closest('.resource')?.querySelector('strong')?.textContent||'Watch the video').replace(/^Video:\s*/i,'').trim()||'Watch the video';
+    const description=document.createElement('p');
+    description.className='lesson-video-description';
+    description.textContent='Watch this video as part of the session.';
     const button=document.createElement('button');
     button.type='button';
     button.className='lesson-video-trigger';
     button.setAttribute('aria-expanded','false');
-    button.textContent='▶ '+(link.textContent.trim().replace(/[↗→]/g,'').trim()||'Watch video');
+    button.textContent='▶ Watch Video →';
     const player=document.createElement('div');
     player.className='lesson-video-player';
     player.hidden=true;
@@ -279,7 +291,7 @@
         player.hidden=true;
         player.replaceChildren();
         button.setAttribute('aria-expanded','false');
-        button.textContent='▶ '+(link.dataset.videoLabel||'Watch video');
+        button.textContent='▶ Watch Video →';
       }else{
         const iframe=document.createElement('iframe');
         iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id);
@@ -297,7 +309,7 @@
     link.dataset.videoLabel=link.textContent.trim().replace(/[↗→]/g,'').trim()||'Watch video';
     const parent=link.closest('.resource')||link.closest('p')||link;
     parent.replaceWith(holder);
-    holder.append(button,player,fallback);
+    holder.append(kicker,heading,description,button,player,fallback);
   });
 
   function escapeHtml(value){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
