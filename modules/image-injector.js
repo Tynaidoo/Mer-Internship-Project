@@ -157,7 +157,7 @@
     ]
   };
   // These sessions contain new, document-based reflection activities; preserve them as written.
-  const preserveWorksheetActivities=['module-7-session-3.html','module-7-session-4.html','module-8-session-1.html','module-8-session-2.html'].includes(page);
+  const preserveWorksheetActivities=['module-7-session-3.html','module-7-session-4.html','module-8-session-1.html','module-8-session-2.html','module-6-session-4.html'].includes(page);
   const activities=[...document.querySelectorAll('.activity')];
   let localIndex=0;
   activities.forEach(activity=>{
@@ -192,7 +192,7 @@
   document.addEventListener('click',event=>{
     const link=event.target.closest('a[href]');
     if(!link||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
-    const card=link.closest('.interactive-link-card,.activity');
+    const card=link.closest('.interactive-link-card,.activity,.spark,#reflection');
     if(!card||link.closest('.inline-activity-panel'))return;
     const url=new URL(link.href,location.href);
     const isActivity=url.hostname.endsWith('.gautengpestcontrol.chatgpt.site')||url.pathname.endsWith('/activity-player.html');
