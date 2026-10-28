@@ -312,5 +312,27 @@
     holder.append(kicker,heading,description,button,player,fallback);
   });
 
+  // Add accessible visual cues to standard lesson headings.
+  if (page.startsWith('module-') && page.endsWith('.html')) {
+    const cues = [
+      ['checklist','☑️'],['time','🕒'],['duration','🕒'],
+      ['learning outcome','🎯'],['learning objective','🎯'],
+      ['purpose','🧭'],['spark','✨'],['reflection','💭'],
+      ['activity','✏️'],['video','▶️'],['resources','📚'],
+      ['reading','📚'],['reference','📚'],['summary','💡']
+    ];
+    document.querySelectorAll('.lesson h2, .lesson h3, .lesson h4, main h2, main h3, main h4, main strong').forEach(el => {
+      if (el.querySelector('.course-heading-icon')) return;
+      const label=el.textContent.trim().toLowerCase();
+      const cue=cues.find(([word])=>label.includes(word));
+      if (!cue) return;
+      if (el.tagName==='STRONG' && label.length>24) return;
+      const span=document.createElement('span');
+      span.className='course-heading-icon';
+      span.setAttribute('aria-hidden','true');
+      span.textContent=cue[1]+' ';
+      el.prepend(span);
+    });
+  }
   function escapeHtml(value){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 })();
