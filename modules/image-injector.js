@@ -273,38 +273,31 @@
     const button=document.createElement('button');
     button.type='button';
     button.className='lesson-video-trigger';
-    button.setAttribute('aria-expanded','false');
-    button.textContent='▶ Watch Video →';
+    button.setAttribute('aria-expanded','true');
+    button.textContent='✕ Hide video';
     const player=document.createElement('div');
     player.className='lesson-video-player';
-    player.hidden=true;
+    const iframe=document.createElement('iframe');
+    iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id);
+    iframe.title='Course video';
+    iframe.loading='lazy';
+    iframe.referrerPolicy='strict-origin-when-cross-origin';
+    iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen=true;
+    player.appendChild(iframe);
     const fallback=document.createElement('p');
     fallback.className='lesson-video-fallback';
     const direct=document.createElement('a');
     direct.href='https://www.youtube.com/watch?v='+encodeURIComponent(id);
     direct.target='_blank';
     direct.rel='noopener noreferrer';
-    direct.textContent='If the video cannot play here, open it on YouTube ↗';
+    direct.textContent='Open video on YouTube ↗';
     fallback.appendChild(direct);
     button.addEventListener('click',()=>{
-      if(!player.hidden){
-        player.hidden=true;
-        player.replaceChildren();
-        button.setAttribute('aria-expanded','false');
-        button.textContent='▶ Watch Video →';
-      }else{
-        const iframe=document.createElement('iframe');
-        iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id);
-        iframe.title='Course video';
-        iframe.loading='lazy';
-        iframe.referrerPolicy='strict-origin-when-cross-origin';
-        iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        iframe.allowFullscreen=true;
-        player.appendChild(iframe);
-        player.hidden=false;
-        button.setAttribute('aria-expanded','true');
-        button.textContent='✕ Close video';
-      }
+      player.hidden=!player.hidden;
+      button.setAttribute('aria-expanded',String(!player.hidden));
+      button.textContent=player.hidden?'▶ Show video':'✕ Hide video';
+      if(player.hidden)iframe.src=iframe.src;
     });
     link.dataset.videoLabel=link.textContent.trim().replace(/[↗→]/g,'').trim()||'Watch video';
     const parent=link.closest('.resource')||link.closest('p')||link;
