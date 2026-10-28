@@ -269,7 +269,14 @@
     heading.textContent=(link.closest('.resource')?.querySelector('strong')?.textContent||'Watch the video').replace(/^Video:\s*/i,'').trim()||'Watch the video';
     const description=document.createElement('p');
     description.className='lesson-video-description';
-    description.textContent='Watch this video as part of the session.';
+    const videoGuidance={
+      'P-ZEybBjaCY':'Watch this video to learn how to write clearer AI prompts. Connect the techniques to the prompt structure and examples discussed in this session.',
+      'mqYbcMmSPDo':'Watch this video to explore when AI-generated information can be trusted and why checking evidence, sources and accuracy matters.',
+      'b0joTPfH4Bs':'Watch this video to understand how an ePortfolio can document your skills, learning experiences and achievements throughout your internship.',
+      'uz-8jabkkw4':'Watch this video to learn more about POPIA and connect its privacy principles to how you handle personal information in the workplace.',
+      'xyANahuhGs0':'Watch this video to reinforce your understanding of occupational health and safety, including workplace hazards, responsibilities and safer working practices.'
+    };
+    description.textContent=videoGuidance[id]||('Watch this video to learn more about '+heading.textContent.toLowerCase()+' and connect the ideas to the examples and activities in this session.');
     const button=document.createElement('button');
     button.type='button';
     button.className='lesson-video-trigger';
